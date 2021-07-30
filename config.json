@@ -1,0 +1,4 @@
+{
+  "token": "process.env.BOT_TOKEN",
+  "maxLength": 1300
+}
