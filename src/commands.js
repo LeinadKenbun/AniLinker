@@ -29,7 +29,7 @@ export default {
       return queryAL(userQuery, variables).then(res => res.User).then(user => {
         const about = user.about ? user.about.replace(/(~~~|\*\*\*|#{2,})/g, "") : "";
 
-        const embed = new discord.RichEmbed()
+        const embed = new discord.MessageEmbed()
           .setAuthor(user.name, "https://anilist.co/img/logo_al.png", user.url)
           .setDescription(sanitizeDescription(about, true))
           .setColor(getColor(user.options.profileColor))

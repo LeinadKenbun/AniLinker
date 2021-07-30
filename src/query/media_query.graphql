@@ -12,6 +12,7 @@ query ($id: Int, $search: String, $type: MediaType!) {
         format
         episodes
         chapters
+        id
         airingSchedule(page: 0, perPage: 1, notYetAired: true) {
             nodes {
                 timeUntilAiring

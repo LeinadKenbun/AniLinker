@@ -3,6 +3,8 @@ const discord = require("discord.js");
 const client = new discord.Client();
 import commands from "./commands";
 
+require('dotenv').config()
+
 Object.entries(commands).forEach(value => {
   const shortHand = commands[value[0].charAt(0) + ""] = {};
   shortHand.apply = (contents, channel) => value[1].apply(contents, channel);
@@ -30,9 +32,17 @@ client.on("message", message => {
 
   command.apply(match[2], message.channel).catch(error => message.channel.send(error.message));
 });
-client.login(config.token);
+client.login(process.env.BOT_TOKEN);
 
 function createPattern() {
   const keys = Object.keys(commands).join("|");
   return new RegExp("(" + keys + ")\{(.+?)}");
 }
+
+var http = require('http');
+
+http.createServer(function (req, res) {
+  res.write("Bot is now online :D");
+  res.end();
+}).listen(8080);
+

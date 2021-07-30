@@ -15,13 +15,13 @@ export function getSearch(text) {
 
 export function sanitizeDescription(raw, media) {
   raw = striptags(raw)
-    .replace(/([\n\r])+/g, " ")
+    .replace(/([\r])+/g, " ")
     .replace(/&quot;/g, "\"")
     .replace(/\[(.+?)]\(.*?\)/g, "$1")
     .replace(/img.*?\(.*?\)/g, "");
 
   if (media)
-    raw = raw.substring(0, config.maxLength) + "...";
+    raw = raw.substring(0, config.maxLength);
   return raw.trim();
 }
 
@@ -34,10 +34,10 @@ export function handleMedia(type, contents, channel) {
     variables.id = search;
 
   return queryAL(mediaQuery, variables).then(res => res.Media).then(media => {
-    const embed = new discord.RichEmbed()
-      .setAuthor(media.title.romaji, "https://anilist.co/img/logo_al.png", media.url)
+    const embed = new discord.MessageEmbed()
+      .setAuthor(media.title.romaji, "https://media.discordapp.net/attachments/595551516442624019/848915878812450856/elves.png?width=705&height=670", media.url)
       .setDescription(sanitizeDescription(media.description, true))
-      .setThumbnail(media.image.extraLarge)
+      .setImage(`https://img.anili.st/media/${media.id}`)
       .setColor(media.image.color || 4044018)
       .setFooter(getFooterText(media));
 
