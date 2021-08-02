@@ -37,7 +37,6 @@ export function handleMedia(type, contents, channel) {
     const embed = new discord.MessageEmbed()
       .setAuthor(media.title.romaji, "https://media.discordapp.net/attachments/595551516442624019/848915878812450856/elves.png?width=705&height=670", media.url)
       .setDescription(sanitizeDescription(media.description, true))
-      .addField("Watch Trailer", "[Link](https://youtu.be/${media.trailer.id}")
       .setImage(`https://img.anili.st/media/${media.id}`)
       .setColor(media.image.color || 4044018)
       .setFooter(getFooterText(media));
