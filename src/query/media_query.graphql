@@ -10,6 +10,9 @@ query ($id: Int, $search: String, $type: MediaType!) {
             color
         }
         format
+        trailer {
+    	  id
+    	}
         episodes
         chapters
         id
